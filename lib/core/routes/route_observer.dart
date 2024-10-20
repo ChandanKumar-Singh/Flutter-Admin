@@ -1,14 +1,18 @@
 import 'package:admin/core/routes/app_router.dart';
+import 'package:ext_plus/ext_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'route_state.dart';
 
 class AppRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+  bool isIos = defaultTargetPlatform == TargetPlatform.iOS;
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     _updateRouteState(route);
-    print('\u001b[32m[Pushed]\u001b[0m ${route.settings.name}');
+    String tag = "${isIos?'':'\u001b[32m'}[Pushed]${isIos?'':'\u001b[0m'}";
+    print('$tag - ${route.settings.name} - ${route.settings.arguments}');
   }
 
   @override

@@ -10,7 +10,7 @@ class SidebarDrawer extends StatefulWidget {
     this.controller,
     required this.sideBarBuilder,
     this.minAdapterWidth = 800,
-    this.drawerWidth = 250,
+    this.drawerWidth = 300,
     this.duration = 5,
   });
   final double drawerWidth;
@@ -30,7 +30,7 @@ class SidebarDrawer extends StatefulWidget {
 
 class _SidebarDrawerState extends State<SidebarDrawer>
     with SingleTickerProviderStateMixin {
-  bool drawerOpened = true;
+  bool drawerOpened = false;
   late AnimationController _controller;
   late Animation<double> _slideAnimation;
   late Animation<double> _opacityAnimation;
@@ -41,7 +41,7 @@ class _SidebarDrawerState extends State<SidebarDrawer>
     _controller = widget.controller ??
         AnimationController(
           vsync: this,
-          duration:  Duration(milliseconds: widget.duration),
+          duration: Duration(milliseconds: widget.duration),
         );
 
     _slideAnimation = Tween<double>(begin: -widget.drawerWidth, end: 0).animate(
@@ -59,7 +59,10 @@ class _SidebarDrawerState extends State<SidebarDrawer>
     );
 
     widget.onCreate?.call(_controller);
-    if (drawerOpened) _controller.forward();
+    afterBuildCreated(() {
+      drawerOpened = context.isTablet() || context.isDesktop();
+      if (drawerOpened) _controller.forward();
+    });
   }
 
   @override
@@ -83,7 +86,8 @@ class _SidebarDrawerState extends State<SidebarDrawer>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isLargeScreen = screenWidth > widget.minAdapterWidth;
-     CustomizasionThemeExt theme = Theme.of(context).extension<CustomizasionThemeExt>()!;
+    CustomizasionThemeExt theme =
+        Theme.of(context).extension<CustomizasionThemeExt>()!;
     return Scaffold(
       body: Stack(
         children: [
@@ -101,7 +105,7 @@ class _SidebarDrawerState extends State<SidebarDrawer>
                           width: drawerOpened
                               ? _controller.value * widget.drawerWidth
                               : 0,
-                          duration:  Duration(milliseconds: widget.duration),
+                          duration: Duration(milliseconds: widget.duration),
                           decoration: BoxDecoration(
                             // color: Colors.white,
                             boxShadow: [
@@ -120,7 +124,8 @@ class _SidebarDrawerState extends State<SidebarDrawer>
                   },
                 ),
 
-              if (isLargeScreen && drawerOpened) const VerticalDivider(width: 0),
+              if (isLargeScreen && drawerOpened)
+                const VerticalDivider(width: 0),
               // Main content
               Expanded(
                 child: AnimatedBuilder(

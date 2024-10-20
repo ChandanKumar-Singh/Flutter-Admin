@@ -5,76 +5,84 @@ import 'package:provider/provider.dart';
 import '../../core/theme/index.dart';
 
 class SampleFeaturePage extends StatelessWidget {
-  const SampleFeaturePage({super.key});
+  const SampleFeaturePage({super.key, this.shell = false});
+  final bool shell;
 
   @override
   Widget build(BuildContext context) {
     var currentRoute = context.watch<RouteState>().currentRoute;
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsetsDirectional.all(20),
-        children: [
-        const HeaderText('Feature Under Construction'),
-          TitleText('Current Route: $currentRoute'),
-          MainCard(
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your name',
-                    hintText: 'John Doe',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                DropdownButtonFormField(
-                  items: const [
-                    DropdownMenuItem(value: '1', child: Text('Item 1')),
-                    DropdownMenuItem(value: '2', child: Text('Item 2')),
-                  ],
-                  isExpanded: true,
-                  onChanged: (value) {},
-                  alignment: AlignmentDirectional.bottomCenter,
-                ),
-              ],
+      appBar: shell
+          ? null
+          : AppBar(
+              title: const Text('Sample Feature Page'),
             ),
-          ),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          ColorDropdown(),
-          const SizedBox(height: 20),
-          const Icon(
-            Icons.build,
-            size: 100,
-            color: Colors.orange,
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'This feature is currently under construction.',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'We are working hard to bring you this feature. Stay tuned!',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to Home or another default page
-              RouteUtils.goBack(); // Navigate back
-            },
-            child: const Text('Go Back'),
-          ),
-        ],
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsetsDirectional.all(20),
+          children: [
+            const HeaderText('Feature Under Construction'),
+            TitleText('Current Route: $currentRoute'),
+            MainCard(
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Enter your name',
+                      hintText: 'John Doe',
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  DropdownButtonFormField(
+                    items: const [
+                      DropdownMenuItem(value: '1', child: Text('Item 1')),
+                      DropdownMenuItem(value: '2', child: Text('Item 2')),
+                    ],
+                    isExpanded: true,
+                    onChanged: (value) {},
+                    alignment: AlignmentDirectional.bottomCenter,
+                  ),
+                ],
+              ),
+            ),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            ColorDropdown(),
+            const SizedBox(height: 20),
+            const Icon(
+              Icons.build,
+              size: 100,
+              color: Colors.orange,
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'This feature is currently under construction.',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'We are working hard to bring you this feature. Stay tuned!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to Home or another default page
+                RouteUtils.goBack(); // Navigate back
+              },
+              child: const Text('Go Back'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,13 +1,17 @@
+import 'package:admin/core/theme/index.dart';
+import 'package:admin/main.dart';
 import 'package:admin/shared/extensions/index.dart';
-import 'package:admin/shared/widgets/components/modals/top_notificaiton_type_model.dart';
-import 'package:el_tooltip/el_tooltip.dart';
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 import 'package:side_sheet/side_sheet.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../../../../core/routes/index.dart';
+import '../../../../shared/widgets/components/modals/type/floating_bottom_sheet_type.dart';
 import '../../../../shared/widgets/index.dart';
+import '../../../../shared/widgets/wolt_sheet/home/pages/custom_sheet_pages/new_order_notification_page.dart';
 
 /// preferd sized widget appbar
 
@@ -19,7 +23,7 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Dashboard'),
+      title:  const Text('Dashboard'),
       centerTitle: false,
       leading: IconButton(
         icon: AnimatedSwitcher(
@@ -142,8 +146,13 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
         ).onTap(
-          // () => showTopNotification(context),
-          () {},
+          () {
+            WoltModalSheet.show(
+              context: context,
+              modalTypeBuilder: (_) => const AppBarIconButtonSheetType(),
+              pageListBuilder: (_) => [NewOrderNotificationPage()],
+            );
+          },
 
           radius: 50,
         ),

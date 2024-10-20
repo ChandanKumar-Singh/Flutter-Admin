@@ -4,4 +4,5 @@ class RouteNames {
   static const String settings = 'settings';
   static const String itemDetails = 'item_details';
   static const String profile = 'profile';
+  static const String commingSoon = 'commingSoon';
 }

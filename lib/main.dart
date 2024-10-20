@@ -4,6 +4,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 import 'core/routes/index.dart'; // Ensure this points to your routing setup
 
 void main() {
@@ -51,6 +52,13 @@ class _MyAppState extends State<MyApp> {
         title: 'Flutter Web Admin',
         theme: AdminTheme.buildTheme(
           customizasionExt: Provider.of<CustomizasionThemeExt>(context),
+          exenstions: [
+             WoltModalSheetThemeData(
+            modalBarrierColor: Color(0x52000000),
+            surfaceTintColor: Colors.transparent,
+            
+          ),
+          ]
         ),
         routerDelegate: _router.routerDelegate,
         routeInformationParser: _router.routeInformationParser,

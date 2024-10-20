@@ -32,55 +32,57 @@ class _SheetHeaderWidgetState extends State<SheetHeaderWidget> {
         }
         return true;
       },
-      child: Column(
-        children: [
-          /// header
-          ValueListenableBuilder<double>(
-              valueListenable: _elevation,
-              builder: (_, double elevation, child) {
-                return Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: context.customizationThemeExt.padding,
-                      vertical: 5),
-                  decoration: BoxDecoration(
-                    color: context.theme.colorScheme.surface,
-                    boxShadow: [
-                      if (elevation > 0)
-                        BoxShadow(
-                          color: context.theme.colorScheme.shadow,
-                          offset: const Offset(0, 2),
-                          blurRadius: elevation,
-                        ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      /// close button
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(
-                          Icons.close,
-                          size: 25,
-                          weight: 10,
-                        ),
-                      ).fitted(width: 30),
-                      10.width,
-
-                      /// title
-                      Text(widget.title, style: context.textTheme.titleMedium)
-                          .expand(),
-
-                      /// actions
-                      ...widget.action,
-                    ],
-                  ),
-                );
-              }),
-
-          /// body
-          widget.child.expand(),
-        ],
+      child: SafeArea(
+        child: Column(
+          children: [
+            /// header
+            ValueListenableBuilder<double>(
+                valueListenable: _elevation,
+                builder: (_, double elevation, child) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: context.customizationThemeExt.padding,
+                        vertical: 5),
+                    decoration: BoxDecoration(
+                      color: context.theme.colorScheme.surface,
+                      boxShadow: [
+                        if (elevation > 0)
+                          BoxShadow(
+                            color: context.theme.colorScheme.shadow,
+                            offset: const Offset(0, 2),
+                            blurRadius: elevation,
+                          ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        /// close button
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(
+                            Icons.close,
+                            size: 25,
+                            weight: 10,
+                          ),
+                        ).fitted(width: 30),
+                        10.width,
+        
+                        /// title
+                        Text(widget.title, style: context.textTheme.titleMedium)
+                            .expand(),
+        
+                        /// actions
+                        ...widget.action,
+                      ],
+                    ),
+                  );
+                }),
+        
+            /// body
+            widget.child.expand(),
+          ],
+        ),
       ),
     );
   }

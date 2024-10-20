@@ -20,13 +20,14 @@ class CustomizasionThemeExt extends ThemeExtension<CustomizasionThemeExt>
 
   void updateRadius(double newRadius) {
     if (newRadius != radius) {
-      radius += newRadius;
+      radius = newRadius;
       notifyListeners();
     }
   }
 
   @override
-  CustomizasionThemeExt copyWith({double? radius, ThemeMode? themeMode, double? padding}) {
+  CustomizasionThemeExt copyWith(
+      {double? radius, ThemeMode? themeMode, double? padding}) {
     return CustomizasionThemeExt(
       radius: radius ?? this.radius,
       themeMode: themeMode ?? this.themeMode,

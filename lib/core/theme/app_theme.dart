@@ -10,6 +10,7 @@ class AdminTheme {
     Brightness? brightness,
     TargetPlatform defaultTargetPlatform = TargetPlatform.iOS,
     required CustomizasionThemeExt customizasionExt,
+    List<ThemeExtension> exenstions = const [],
   }) {
     bool useDark = customizasionExt.themeMode == ThemeMode.dark;
     // Define color scheme for light mode
@@ -24,17 +25,15 @@ class AdminTheme {
       onSurface: const Color.fromARGB(255, 229, 218, 218),
       error: Colors.redAccent,
       onError: Colors.white,
-      brightness: customizasionExt.themeMode == ThemeMode.light
-          ? Brightness.light
-          : Brightness.dark,
-      shadow: useDark ? const Color.fromARGB(255, 105, 104, 104).withOpacity(0.2) : Colors.black.withOpacity(0.2),
+      brightness: !useDark ? Brightness.light : Brightness.dark,
+      shadow: useDark
+          ? const Color.fromARGB(255, 105, 104, 104).withOpacity(0.2)
+          : Colors.black.withOpacity(0.2),
     );
     var themeData = ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      extensions: [
-        customizasionExt,
-      ],
+      extensions: [customizasionExt, ...exenstions],
 
       // General settings
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -252,11 +251,11 @@ AppBarTheme buildAppBarTheme({
   /// This new parameter allows you to manage the status bar visibility
   bool manageStatusBar = true,
 }) {
-  // Determine AppBar background color
+  /// Determine AppBar background color
   final Color appBarColor =
       useScaffoldBackgroundColor ? colorScheme.surface : colorScheme.primary;
 
-  // Automatically adjust icon and text color based on brightness
+  /// Automatically adjust icon and text color based on brightness
   final bool isDark =
       ThemeData.estimateBrightnessForColor(appBarColor) == Brightness.dark;
   final Color finalIconColor = isDark ? Colors.white : Colors.black;
@@ -276,13 +275,10 @@ AppBarTheme buildAppBarTheme({
     toolbarHeight: toolbarHeight,
     scrolledUnderElevation: 10,
     surfaceTintColor: shadowColor,
-    systemOverlayStyle: !manageStatusBar
-        ? null
-        : SystemUiOverlayStyle(
-            statusBarColor: appBarColor,
-            statusBarIconBrightness:
-                isDark ? Brightness.light : Brightness.dark,
-          ),
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
+      statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
+    ),
   );
 }
 

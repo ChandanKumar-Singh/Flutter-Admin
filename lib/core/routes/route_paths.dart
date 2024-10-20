@@ -2,6 +2,7 @@ import 'package:admin/core/routes/routes.dart';
 
 class RoutePaths {
   static const String home = '/dashboard';
+  static const String commingSoon = '/commingSoon';
   static const String login = '/login';
   static const String settings = '/settings/general';
   static const String itemDetails = '/item/:itemId';
@@ -23,10 +24,14 @@ class RoutePaths {
         final itemId = params?['itemId'];
         path = itemDetails.replaceAll(':itemId', itemId!);
         break;
+      case RouteNames.commingSoon:
+        path = commingSoon;
+        break;
       default:
         path = home;
     }
 
-    return path;
+    Uri uri = Uri(path: path, queryParameters: params);
+    return uri.toString();
   }
 }
