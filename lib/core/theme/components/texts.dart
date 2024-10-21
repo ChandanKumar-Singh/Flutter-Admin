@@ -23,7 +23,7 @@ class TitleText extends StatelessWidget {
 
   const TitleText(
     this.data, {
-    Key? key,
+    super.key,
     this.style,
     this.strutStyle,
     this.textAlign,
@@ -41,11 +41,11 @@ class TitleText extends StatelessWidget {
     this.shadows,
     this.letterSpacing,
     this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    TextStyle titleStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(
+    TextStyle titleStyle = Theme.of(context).textTheme.titleLarge!.copyWith(
           color: style?.color,
           fontSize: style?.fontSize,
           fontWeight: style?.fontWeight,

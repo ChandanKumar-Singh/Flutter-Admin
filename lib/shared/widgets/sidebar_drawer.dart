@@ -15,13 +15,12 @@ class SidebarDrawer extends StatefulWidget {
   });
   final double drawerWidth;
   final int duration;
-  final Widget Function(
-      BuildContext context, bool isOpen, VoidCallback toggleDrawer) child;
+  final Widget Function(BuildContext context, bool isOpen,
+      Future<void> Function() toggleDrawer) child;
   final void Function(AnimationController controller)? onCreate;
   final AnimationController? controller;
-  final Widget Function(
-          BuildContext context, bool isOpen, VoidCallback toggleDrawer)
-      sideBarBuilder;
+  final Widget Function(BuildContext context, bool isOpen,
+      Future<void> Function() toggleDrawer) sideBarBuilder;
   final double minAdapterWidth;
 
   @override
@@ -60,7 +59,8 @@ class _SidebarDrawerState extends State<SidebarDrawer>
 
     widget.onCreate?.call(_controller);
     afterBuildCreated(() {
-      drawerOpened = context.isTablet() || context.isDesktop();
+      /// TODO : Uncomment 
+      // drawerOpened = context.isTablet() || context.isDesktop();
       if (drawerOpened) _controller.forward();
     });
   }
@@ -71,15 +71,14 @@ class _SidebarDrawerState extends State<SidebarDrawer>
     super.dispose();
   }
 
-  void toggleDrawer() {
-    setState(() {
-      drawerOpened = !drawerOpened;
-      if (drawerOpened) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+  Future<void> toggleDrawer() async {
+    drawerOpened = !drawerOpened;
+    if (drawerOpened) {
+      await _controller.forward();
+    } else {
+      await _controller.reverse();
+    }
+    setState(() {});
   }
 
   @override

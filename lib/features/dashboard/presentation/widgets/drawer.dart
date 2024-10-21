@@ -18,7 +18,7 @@ class DashBoardDrawer extends StatefulWidget {
   });
   final double width;
   final bool isOpen;
-  final VoidCallback toggleDrawer;
+  final Future<void> Function() toggleDrawer;
 
   @override
   State<DashBoardDrawer> createState() => _DashBoardDrawerState();
@@ -48,16 +48,19 @@ class _DashBoardDrawerState extends State<DashBoardDrawer> {
     return children.any((item) => isSelected(item.url.validate()));
   }
 
-  void onTap(String key) {
+  void onTap(String key) async {
     switch (key) {
+      case 'default-dashboard':
+        RouteUtils.go(RouteNames.home);
+        break;
       case 'general-settings':
         RouteUtils.push(RouteNames.settings);
         break;
       default:
         RouteUtils.push(RouteNames.commingSoon,
             params: {'shell': kIsWeb ? '0' : '1'});
+        widget.toggleDrawer();
     }
-    widget.toggleDrawer();
   }
 
   @override

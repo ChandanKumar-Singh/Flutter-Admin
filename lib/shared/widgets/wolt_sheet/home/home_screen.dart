@@ -16,7 +16,10 @@ class HomeScreen extends StatefulWidget {
     required this.onThemeBrightnessChanged,
     required this.onDirectionalityChanged,
     super.key,
+    this.shell = false,
   });
+
+  final bool shell;
 
   final void Function(bool) onThemeBrightnessChanged;
   final void Function(TextDirection) onDirectionalityChanged;
@@ -39,19 +42,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Wolt Modal Sheet Playground'),
-          leading: IconButton(
-            key: _attachedAppBarKey,
-            icon: const Icon(Icons.anchor),
-            onPressed: () {
-              WoltModalSheet.show(
-                context: context,
-                modalTypeBuilder: (_) => AttachedFloatingBottomSheetType(
-                  anchorKey: _attachedAppBarKey,
+          leading: !widget.shell
+              ? null
+              : IconButton(
+                  key: _attachedAppBarKey,
+                  icon: const Icon(Icons.anchor),
+                  onPressed: () {
+                    WoltModalSheet.show(
+                      context: context,
+                      modalTypeBuilder: (_) => AttachedFloatingBottomSheetType(
+                        anchorKey: _attachedAppBarKey,
+                      ),
+                      pageListBuilder: (_) => [NewOrderNotificationPage()],
+                    );
+                  },
                 ),
-                pageListBuilder: (_) => [NewOrderNotificationPage()],
-              );
-            },
-          ),
           actions: [
             WoltCircularElevatedButton(
               onPressed: () {

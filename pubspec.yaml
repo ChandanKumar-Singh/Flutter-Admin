@@ -32,6 +32,8 @@ dependencies:
     path: /Users/electrovese/Downloads/wolt_modal_sheet-main
   demo_ui_components:
     path: /Users/electrovese/Downloads/wolt_modal_sheet-main/demo_ui_components
+  fl_chart: ^0.69.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:

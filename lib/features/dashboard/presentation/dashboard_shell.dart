@@ -1,4 +1,5 @@
 import 'package:ext_plus/ext_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/index.dart';
 import 'widgets/appbar.dart';
@@ -15,18 +16,16 @@ class DashboardShell extends StatelessWidget {
 }
 
 class DashBoard extends StatelessWidget {
-  const DashBoard({
-    super.key,
-    required this.child,
-  });
+  const DashBoard({super.key, required this.child});
 
   final Widget child;
-  final double drawerWidth = 300;
+  final double drawerWidth = kIsWeb ? 250 : 300;
   final double minAdapterWidth = 600;
   @override
   Widget build(BuildContext context) {
     return SidebarDrawer(
       drawerWidth: drawerWidth,
+      duration: kIsWeb ? 10 : 300,
       sideBarBuilder: (context, isOpen, toggleDrawer) {
         return DashBoardDrawer(
             isOpen: isOpen, toggleDrawer: toggleDrawer, width: drawerWidth);

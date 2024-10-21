@@ -13,11 +13,12 @@ class AdminTheme {
     List<ThemeExtension> exenstions = const [],
   }) {
     bool useDark = customizasionExt.themeMode == ThemeMode.dark;
-    // Define color scheme for light mode
     ColorScheme colorScheme = ColorScheme(
       primary: const Color.fromARGB(255, 7, 63, 176), // Soft Blue
       onPrimary: useDark ? Colors.white : Colors.black,
-      secondary: const Color.fromARGB(255, 5, 148, 105), // Vibrant Orange
+      secondary: useDark
+          ? const Color.fromARGB(255, 113, 246, 206)
+          : const Color.fromARGB(255, 255, 87, 34), // Vibrant Orange
       onSecondary: Colors.white,
       surface: useDark
           ? const Color.fromARGB(255, 33, 33, 33)
@@ -87,7 +88,7 @@ class AdminTheme {
       ),
 
       // Icon Theme
-      iconTheme: IconThemeData(color: colorScheme.onPrimary, size: 24),
+      iconTheme: IconThemeData(color: colorScheme.onPrimary, size: 20),
 
       // Divider Theme
       dividerTheme: DividerThemeData(
@@ -225,6 +226,10 @@ class AdminTheme {
         iconColor: colorScheme.onPrimary,
       ),
     );
+
+    /// Icon button theme
+    // themeData = themeData.copyWith(
+    //     iconButtonTheme: buildIconButtonTheme(theme: themeData));
 
     /// return the themeData
     return themeData;
@@ -473,5 +478,27 @@ DialogTheme createEnhancedDialogTheme({
     barrierColor: barrierColor ?? Colors.black54,
     insetPadding: insetPadding ?? const EdgeInsets.symmetric(horizontal: 20.0),
     clipBehavior: clipBehavior ?? Clip.antiAlias,
+  );
+}
+
+IconButtonThemeData buildIconButtonTheme({
+  required ThemeData theme,
+}) {
+  return IconButtonThemeData(
+    style: ButtonStyle(
+      iconColor: WidgetStateProperty.resolveWith<Color>(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return Colors.red;
+          } else if (states.contains(WidgetState.disabled)) {
+            return Colors.grey;
+          }
+          return Colors.blue; // default icon color
+        },
+      ),
+      iconSize: WidgetStateProperty.all(24.0), // default icon size
+      splashFactory: InkRipple.splashFactory, // Ripple effect on press
+      padding: WidgetStateProperty.all(EdgeInsets.all(12.0)),
+    ),
   );
 }

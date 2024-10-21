@@ -23,7 +23,7 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title:  const Text('Dashboard'),
+      title: const Text('Dashboard'),
       centerTitle: false,
       leading: IconButton(
         icon: AnimatedSwitcher(
@@ -47,6 +47,7 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
       ).tip('Toggle Drawer'),
       actions: [
         /// Theme Change Button
+
         Container(
           height: 35,
           padding:
@@ -62,14 +63,13 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
                 context.isDark
                     ? Icons.light_mode_outlined
                     : Icons.dark_mode_outlined,
-                color: context.theme.colorScheme.onSurface,
-                size: 20,
+                // color: context.theme.colorScheme.onSurface,
+                size: 23,
               ),
               if (context.isDesktop() || context.isTablet())
                 Text(
                   context.isDark ? 'Light' : 'Dark',
-                  style: context.textTheme.bodySmall!
-                      .copyWith(color: context.theme.colorScheme.onSurface),
+                  style: context.textTheme.bodyMedium,
                 ).paddingSymmetric(horizontal: 5),
             ],
           ).tip('Change Theme'),
@@ -87,14 +87,10 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.red,
             shape: BoxShape.circle,
           ),
-          child: const Row(
-            children: [
-              Icon(
-                Icons.notifications_none_outlined,
-                color: Colors.white,
-                size: 20,
-              ),
-            ],
+          child: const Icon(
+            Icons.notifications_none_outlined,
+            color: Colors.white,
+            size: 25,
           ).onTap(_showNotificationDialog).tip('Notifications'),
         ),
         10.width,
@@ -113,14 +109,9 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               /// profile image
               Container(
-                constraints: const BoxConstraints(
-                  minWidth: 28,
-                  minHeight: 28,
-                ),
+                constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
                 decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
+                    color: Colors.white, shape: BoxShape.circle),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.asset(
@@ -129,10 +120,8 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
                     height: 40,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      return Icon(
-                        Icons.person,
-                        color: context.theme.primaryColor,
-                      );
+                      return Icon(Icons.person,
+                          color: context.theme.primaryColor);
                     },
                   ),
                 ),
@@ -140,8 +129,7 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
               if (context.isDesktop() || context.isTablet())
                 Text(
                   'Admin',
-                  style: context.textTheme.bodySmall!
-                      .copyWith(color: context.theme.colorScheme.onSurface),
+                  style: context.textTheme.bodyMedium,
                 ).paddingSymmetric(horizontal: 5),
             ],
           ),
@@ -153,7 +141,6 @@ class DashboardAppar extends StatelessWidget implements PreferredSizeWidget {
               pageListBuilder: (_) => [NewOrderNotificationPage()],
             );
           },
-
           radius: 50,
         ),
 

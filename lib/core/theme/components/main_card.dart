@@ -12,6 +12,7 @@ class MainCard extends StatelessWidget {
   final Clip? clipBehavior;
   final Widget? child;
   final bool semanticContainer;
+  final double padding;
 
   const MainCard({
     super.key,
@@ -25,6 +26,7 @@ class MainCard extends StatelessWidget {
     this.clipBehavior,
     required this.child,
     this.semanticContainer = true,
+    this.padding = 10.0,
   });
 
   @override
@@ -40,7 +42,7 @@ class MainCard extends StatelessWidget {
       clipBehavior: clipBehavior ?? Clip.antiAlias,
       semanticContainer: semanticContainer,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(padding),
         child: child,
       ),
     );

@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/dashboard/presentation/index.dart';
 import '../../features/not-found/index.dart';
 import '../../shared/widgets/wolt_sheet/home/home_screen.dart';
-import 'index.dart';
+import 'route_observer.dart';
+import 'route_paths.dart';
+import 'routes.dart';
 
 class AppRouter {
   // private navigators
@@ -107,7 +109,11 @@ class AppRouter {
     return GoRoute(
       path: RoutePaths.settings,
       name: RouteNames.settings,
-      builder: (context, state) => SampleFeaturePage(shell: shell),
+      builder: (context, state) => HomeScreen(
+        shell: shell,
+        onDirectionalityChanged: (p0) {},
+        onThemeBrightnessChanged: (p0) {},
+      ),
     );
   }
 
@@ -115,17 +121,8 @@ class AppRouter {
     return GoRoute(
       path: RoutePaths.home,
       name: RouteNames.home,
-      builder: (context, state) => !shell
-          ? DashBoard(
-              child: HomeScreen(
-                onDirectionalityChanged: (p0) {},
-                onThemeBrightnessChanged: (p0) {},
-              ),
-            )
-          : HomeScreen(
-              onDirectionalityChanged: (p0) {},
-              onThemeBrightnessChanged: (p0) {},
-            ),
+      builder: (context, state) =>
+          !shell ? const DashBoard(child: LandingPage()) : const LandingPage(),
     );
   }
 

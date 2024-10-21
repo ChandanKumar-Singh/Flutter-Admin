@@ -11,21 +11,22 @@ class RouteUtils {
   }
 
   /// Push a new page onto the navigation stack.
-  static void push(String routeName, {Map<String, String>? params}) {
+  static Future<T?> push<T>(String routeName,
+      {Map<String, String>? params}) async {
     String path = RoutePaths.getPath(routeName, params);
-    AppRouter.context?.push(path);
+    return AppRouter.context?.push(path);
   }
 
   /// Replace the current page with a new page.
-  static void replace(String routeName, {Map<String, String>? params}) {
+  static void replace(String routeName, {Map<String, String>? params}) async {
     String path = RoutePaths.getPath(routeName, params);
-    AppRouter.context?.go(path);
+    return AppRouter.context?.pushReplacementNamed(path);
   }
 
   /// Navigate back to the previous page.
-  static void goBack() {
+  static void goBack<T extends Object?>([T? result]) {
     if (AppRouter.router.canPop()) {
-      AppRouter.context?.pop();
+      AppRouter.context?.pop(result);
     }
   }
 

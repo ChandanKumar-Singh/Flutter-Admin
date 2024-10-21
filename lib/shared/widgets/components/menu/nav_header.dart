@@ -29,13 +29,13 @@ class NavHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: titleStyle ?? theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+        Text(title, style: titleStyle ?? theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
         if (caption != null && caption!.isNotEmpty)
           Padding(
             padding: const EdgeInsetsDirectional.only(top: 0.0),
             child: Text(
               caption!,
-              style: captionStyle ?? theme.textTheme.labelSmall,
+              style: captionStyle ?? theme.textTheme.labelMedium,
             ),
           ),
         if (children.isNotEmpty) ...[

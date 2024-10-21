@@ -65,7 +65,7 @@ class _NavCollapseState extends State<NavCollapse> with WidgetsBindingObserver {
                 children: [
                   Container(
                     padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: 8.0, vertical: 5.0),
+                        horizontal: 8.0, vertical: 10.0),
                     decoration: BoxDecoration(
                       color: hovering
                           ? theme.colorScheme.secondary.withOpacity(0.2)
@@ -96,7 +96,7 @@ class _NavCollapseState extends State<NavCollapse> with WidgetsBindingObserver {
                               Expanded(
                                 child: Text(
                                   widget.title,
-                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                  style: theme.textTheme.bodyLarge?.copyWith(
                                     color: hovering
                                         ? theme.colorScheme.secondary
                                         : null,

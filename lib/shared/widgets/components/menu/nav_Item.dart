@@ -39,7 +39,7 @@ class _NavItemState extends State<NavItem> {
             onTap: widget.onTap,
             child: Container(
               padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: 8.0, vertical: 5.0),
+                  horizontal: 8.0, vertical: 10.0),
               decoration: BoxDecoration(
                 color: hovering || widget.isSelected
                     ? theme.colorScheme.secondary.withOpacity(0.2)
@@ -68,7 +68,7 @@ class _NavItemState extends State<NavItem> {
                       Expanded(
                         child: Text(
                           widget.title,
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                          style: theme.textTheme.bodyLarge?.copyWith(
                             color: hovering
                                 ? theme.colorScheme.secondary:null,
                             //     : theme.colorScheme.onSurface,

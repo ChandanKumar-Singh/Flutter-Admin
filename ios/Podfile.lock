@@ -10,6 +10,9 @@ PODS:
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -21,6 +24,7 @@ DEPENDENCIES:
   - flutter_custom_tabs_ios (from `.symlinks/plugins/flutter_custom_tabs_ios/ios`)
   - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 SPEC REPOS:
@@ -38,6 +42,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_localization/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
@@ -47,6 +53,7 @@ SPEC CHECKSUMS:
   flutter_custom_tabs_ios: a651b18786388923b62de8c0537607de87c2eccf
   flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
   fluttertoast: e9a18c7be5413da53898f660530c56f35edfba9c
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
 
