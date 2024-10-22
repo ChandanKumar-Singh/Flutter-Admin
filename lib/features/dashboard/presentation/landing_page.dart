@@ -18,8 +18,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return SafeArea(
         child: ListView(
           padding:
               EdgeInsetsDirectional.all(context.customizationThemeExt.radius),
@@ -59,7 +58,6 @@ class LandingPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }

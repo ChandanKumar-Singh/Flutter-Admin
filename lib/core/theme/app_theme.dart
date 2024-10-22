@@ -1,3 +1,4 @@
+import 'package:admin/core/routes/app_router.dart';
 import 'package:admin/core/theme/typography.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,9 @@ class AdminTheme {
     required CustomizasionThemeExt customizasionExt,
     List<ThemeExtension> exenstions = const [],
   }) {
+
     bool useDark = customizasionExt.themeMode == ThemeMode.dark;
-    ColorScheme colorScheme = ColorScheme(
+    /* ColorScheme colorScheme = ColorScheme(
       primary: const Color.fromARGB(255, 7, 63, 176), // Soft Blue
       onPrimary: useDark ? Colors.white : Colors.black,
       secondary: useDark
@@ -24,6 +26,12 @@ class AdminTheme {
           ? const Color.fromARGB(255, 33, 33, 33)
           : const Color.fromARGB(255, 255, 255, 255),
       onSurface: const Color.fromARGB(255, 229, 218, 218),
+      primaryContainer: useDark
+          ? const Color.fromARGB(255, 48, 47, 47)
+          : const Color.fromARGB(255, 222, 222, 222),
+      // secondaryContainer: useDark
+      //     ? const Color.fromARGB(150, 0, 47, 47)
+      //     : const Color.fromARGB(150, 222, 222, 222),    
       error: Colors.redAccent,
       onError: Colors.white,
       brightness: !useDark ? Brightness.light : Brightness.dark,
@@ -31,6 +39,87 @@ class AdminTheme {
           ? const Color.fromARGB(255, 105, 104, 104).withOpacity(0.2)
           : Colors.black.withOpacity(0.2),
     );
+     */
+    // colorScheme = ColorScheme.fromSeed(
+    //   seedColor: Color.fromARGB(255, 7, 63, 176),
+    //   brightness: !useDark ? Brightness.light : Brightness.dark,
+    // );
+
+    ColorScheme colorScheme = ColorScheme(
+      brightness: useDark ? Brightness.dark : Brightness.light,
+
+      primary: useDark
+          ? const Color(0xFF1976D2) // Bright Blue (dark mode)
+          : const Color(0xFF3F51B5), // Vibrant Indigo (light mode)
+
+      onPrimary: useDark
+          ? Colors.white
+          : const Color.fromARGB(255, 0, 0, 0), // White text on primary for both
+
+      secondary: useDark
+          ? const Color(0xFF00ACC1) // Aquamarine Blue (dark mode)
+          // : const Color(0xFFFFC107), // Warm Yellow (light mode)
+          : const Color.fromARGB(255, 69, 122, 226), // Warm Yellow (light mode)
+
+      onSecondary: useDark
+          ? const Color(0xFF212121) // Dark background for contrast in dark mode
+          : const Color(0xFFFFFFFF), // White text for light mode
+
+      surface: useDark
+          ? const Color(0xFF3F51B5) // Dark background for surface
+          : const Color(0xFFFFFFFF), // Light background for surface
+
+      onSurface: useDark
+          ? const Color(0xFFEEEEEE) // Light text on dark surfaces
+          : const Color(0xFF424242), // Dark text on light surfaces
+
+      primaryContainer: useDark
+          ? const Color(0xFF2C3E50) // Muted Blue (dark mode container)
+          : const Color(0xFFE3F2FD), // Soft Blue (light mode container)
+
+      onPrimaryContainer: useDark
+          ? const Color(
+              0xFF90CAF9) // Lighter blue text in container for dark mode
+          : const Color(0xFF1E88E5), // Strong blue in container for light mode
+
+      secondaryContainer: useDark
+          ? const Color(0xFF37474F) // Dark Blue-Grey (dark mode)
+          : const Color(
+              0xFFFFF3E0), // Light Orange background for secondary container
+
+      onSecondaryContainer: useDark
+          ? const Color(0xFF00BCD4) // Bright Cyan text in dark container
+          : const Color(0xFFBF360C), // Dark Orange in light container
+
+      error: Colors.redAccent,
+      onError: Colors.white,
+
+      shadow: useDark
+          ? const Color(0xFF000000).withOpacity(0.4)
+          : const Color(0xFF000000)
+              .withOpacity(0.1), // Softer shadow for light mode
+
+      background: useDark
+          ? const Color(0xFF121212) // Dark background
+          : const Color(0xFFF5F5F5), // Off-white background
+
+      onBackground: useDark
+          ? const Color(0xFFEEEEEE) // Light text for dark background
+          : const Color(0xFF212121), // Dark text for light background
+
+      surfaceTint: useDark
+          ? const Color(0xFF2196F3) // Tinted blue for dark surfaces
+          : const Color(0xFFBBDEFB), // Soft blue tint for light surfaces
+
+      inverseSurface: useDark
+          ? const Color(0xFFF5F5F5) // Light inverse for dark mode
+          : const Color(0xFF212121), // Dark inverse for light mode
+
+      onInverseSurface: useDark
+          ? const Color(0xFF212121)
+          : const Color(0xFFF5F5F5), // White on dark inverse
+    );
+
     var themeData = ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -41,7 +130,9 @@ class AdminTheme {
       platform: defaultTargetPlatform,
 
       // Scaffold background and general colors
-      scaffoldBackgroundColor: colorScheme.surface,
+      // scaffoldBackgroundColor: colorScheme.secondaryContainer,
+      scaffoldBackgroundColor: Colors.transparent,
+      
       canvasColor: colorScheme.surface,
       dividerColor: Colors.grey.shade400,
       // Font
@@ -78,13 +169,13 @@ class AdminTheme {
 
       // Card and Dialog Theme
       cardTheme: CardTheme(
-        color: colorScheme.surface,
+        color: colorScheme.primaryContainer,
         margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(customizasionExt.radius),
         ),
-        elevation: 8,
-        shadowColor: colorScheme.shadow.withOpacity(0.8),
+        elevation: 0,
+        // shadowColor: colorScheme.shadow.withOpacity(0.8),
       ),
 
       // Icon Theme
@@ -498,7 +589,33 @@ IconButtonThemeData buildIconButtonTheme({
       ),
       iconSize: WidgetStateProperty.all(24.0), // default icon size
       splashFactory: InkRipple.splashFactory, // Ripple effect on press
-      padding: WidgetStateProperty.all(EdgeInsets.all(12.0)),
+      padding: WidgetStateProperty.all(const EdgeInsets.all(12.0)),
     ),
   );
+}
+
+class AppColors {
+  // Primary Colors
+  static const Color deepCeruleanBlue = Color(0xFF0077B6);
+  static const Color illuminatingYellow = Color(0xFFF4D35E);
+  static const Color spaceCadetNavy = Color(0xFF2B2D42);
+
+  // Secondary Colors
+  static const Color seafoamGreen = Color(0xFF88E1B7);
+  static const Color softCoral = Color(0xFFF76C5E);
+  static const Color lavenderBlush = Color(0xFFFDEBFC);
+
+  // Accent Colors
+  static const Color sunsetOrange = Color(0xFFFF6F61);
+  static const Color lightStoneGray = Color(0xFFE0E2DB);
+
+  // Text Colors
+  static const Color onyxBlack = Color(0xFF202020);
+  static const Color charcoalGray = Color(0xFF595959);
+  static const Color whiteSmoke = Color(0xFFF5F5F5);
+
+  // Background Colors
+  static const Color snowWhite = Color(0xFFFAFAFA);
+  static const Color cloudyBlue = Color(0xFFB0BEC5);
+  static const Color nightSky = Color(0xFF121212);
 }

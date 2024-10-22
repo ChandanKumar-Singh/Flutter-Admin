@@ -16,12 +16,12 @@ void main() {
           create: (context) => CustomizasionThemeExt(radius: 10)),
       ChangeNotifierProvider(create: (context) => RouteState()),
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         theme: AdminTheme.buildTheme(
             customizasionExt: Provider.of<CustomizasionThemeExt>(context),
             exenstions: [
-              WoltModalSheetThemeData(
+              const WoltModalSheetThemeData(
                 modalBarrierColor: Color(0x52000000),
                 surfaceTintColor: Colors.transparent,
               ),

@@ -4,11 +4,9 @@
 // Based on the work by Mike Golus
 // https://www.csscodelab.com/html-css-only-periodic-table-of-elements/
 
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 void main() {
@@ -16,7 +14,7 @@ void main() {
 }
 
 class PeriodicTableApp extends StatelessWidget {
-  const PeriodicTableApp({Key? key}) : super(key: key);
+  const PeriodicTableApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +45,7 @@ class PeriodicTableApp extends StatelessWidget {
 }
 
 class PeriodicTableWidget extends StatefulWidget {
-  const PeriodicTableWidget({Key? key}) : super(key: key);
+  const PeriodicTableWidget({super.key});
 
   @override
   State<PeriodicTableWidget> createState() => _PeriodicTableWidgetState();
@@ -112,8 +110,7 @@ const categoryColorMapping = {
 };
 
 class AtomicElementWidget extends StatelessWidget {
-  const AtomicElementWidget({Key? key, required this.element})
-      : super(key: key);
+  const AtomicElementWidget({super.key, required this.element});
   final AtomicElement element;
 
   @override

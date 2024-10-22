@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NotFoundPage extends StatelessWidget {
   final String? pageName; // Optional page name for better context
 
-  const NotFoundPage({Key? key, this.pageName}) : super(key: key);
+  const NotFoundPage({super.key, this.pageName});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class NotFoundPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.error,
               size: 100,
               color: Colors.red,

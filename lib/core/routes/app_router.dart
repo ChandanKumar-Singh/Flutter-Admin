@@ -105,7 +105,7 @@ class AppRouter {
     );
   }
 
-  static GoRoute _settingRoute({bool shell = false, bool isDrawer = false}) {
+  static GoRoute _settingRoute({bool shell = false}) {
     return GoRoute(
       path: RoutePaths.settings,
       name: RouteNames.settings,

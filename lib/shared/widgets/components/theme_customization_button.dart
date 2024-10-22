@@ -1,18 +1,13 @@
-import 'package:admin/core/theme/components/texts.dart';
 import 'package:admin/core/theme/index.dart';
-import 'package:admin/main.dart';
 import 'package:admin/shared/extensions/index.dart';
 import 'package:admin/shared/widgets/components/modals/type/floating_bottom_sheet_type.dart';
-import 'package:admin/shared/widgets/wolt_sheet/home/pages/custom_sheet_pages/new_order_notification_page.dart';
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:side_sheet/side_sheet.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../../../core/routes/index.dart';
 import '../animated_rotating_widget.dart';
-import '../wolt_sheet/home/pages/root_sheet_page.dart';
 
 class ThemeCustomizationButton extends StatelessWidget {
   const ThemeCustomizationButton({super.key});

@@ -1,5 +1,4 @@
 import 'package:admin/core/routes/app_router.dart';
-import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

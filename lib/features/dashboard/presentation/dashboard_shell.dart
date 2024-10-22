@@ -32,19 +32,21 @@ class DashBoard extends StatelessWidget {
       },
       minAdapterWidth: minAdapterWidth,
       child: (context, isOpen, toggleDrawer) {
-        return Scaffold(
-          appBar: DashboardAppar(
-            isOpen: isOpen,
-            toggleDrawer: toggleDrawer,
-          ),
-          body: DraggableFloatingWidget(
-            floatingContent: const ThemeCustomizationButton(),
-            initialOffset: Offset(context.width() - 50, kToolbarHeight * 3),
-            anchorPosition: ValueNotifier(Offset.zero),
-            floatingWidgetHeight: 50 * 2,
-            floatingWidgetWidth: 50,
-            child: child,
-          ),
+        return Column(
+          children: [
+            DashboardAppar(
+              isOpen: isOpen,
+              toggleDrawer: toggleDrawer,
+            ),
+            DraggableFloatingWidget(
+              floatingContent: const ThemeCustomizationButton(),
+              initialOffset: Offset(context.width() - 50, kToolbarHeight * 3),
+              anchorPosition: ValueNotifier(Offset.zero),
+              floatingWidgetHeight: 50 * 2,
+              floatingWidgetWidth: 50,
+              child: child,
+            ).expand(),
+          ],
         );
       },
     );

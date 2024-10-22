@@ -88,113 +88,124 @@ class _SidebarDrawerState extends State<SidebarDrawer>
     CustomizasionThemeExt theme =
         Theme.of(context).extension<CustomizasionThemeExt>()!;
     return Scaffold(
-      body: Stack(
-        children: [
-          Row(
-            children: [
-              // Sidebar for large screens
-              if (isLargeScreen)
-                AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return Transform.translate(
-                      offset: Offset(_slideAnimation.value, 0),
-                      child: ClipRect(
-                        child: AnimatedContainer(
-                          width: drawerOpened
-                              ? _controller.value * widget.drawerWidth
-                              : 0,
-                          duration: Duration(milliseconds: widget.duration),
-                          decoration: BoxDecoration(
-                            // color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: widget.sideBarBuilder(
-                              context, drawerOpened, toggleDrawer),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-
-              if (isLargeScreen && drawerOpened)
-                const VerticalDivider(width: 0),
-              // Main content
-              Expanded(
-                child: AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return Transform.translate(
-                      offset: Offset(drawerOpened && isLargeScreen ? 0 : 0, 0),
-                      child: widget.child(
-                        context,
-                        drawerOpened,
-                        toggleDrawer,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://strapi.dhiwise.com/uploads/crafting_a_captivating_flutter_splash_screen_igniting_visual_appealog_image_6535f1634dc09_80e4a43a6c.webp'),
+        fit: BoxFit.cover,
           ),
-          // Sidebar for smaller screens
-          if (!isLargeScreen)
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Stack(
-                  children: [
-                    // Background shadow effect when the sidebar is open
-                    if (drawerOpened)
-                      GestureDetector(
-                        onTap: toggleDrawer,
+        
+        ),
+        child: Stack(
+          children: [
+            Row(
+              children: [
+                // Sidebar for large screens
+                if (isLargeScreen)
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Transform.translate(
+                        offset: Offset(_slideAnimation.value, 0),
+                        child: ClipRect(
+                          child: AnimatedContainer(
+                            width: drawerOpened
+                                ? _controller.value * widget.drawerWidth
+                                : 0,
+                            duration: Duration(milliseconds: widget.duration),
+                            decoration: BoxDecoration(
+                              // color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  blurRadius: 10,
+                                  spreadRadius: 2,
+                                ),
+                              ],
+                            ),
+                            child: widget.sideBarBuilder(
+                                context, drawerOpened, toggleDrawer),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                if (isLargeScreen && drawerOpened)
+                  const VerticalDivider(width: 0),
+                // Main content
+                Expanded(
+                  child: AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Transform.translate(
+                        offset:
+                            Offset(drawerOpened && isLargeScreen ? 0 : 0, 0),
+                        child: widget.child(
+                          context,
+                          drawerOpened,
+                          toggleDrawer,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            // Sidebar for smaller screens
+            if (!isLargeScreen)
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Stack(
+                    children: [
+                      // Background shadow effect when the sidebar is open
+                      if (drawerOpened)
+                        GestureDetector(
+                          onTap: toggleDrawer,
+                          child: Opacity(
+                            opacity: _opacityAnimation.value,
+                            child: Container(
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                          ),
+                        ),
+                      // Sliding sidebar
+                      Transform.translate(
+                        offset: Offset(_slideAnimation.value, 0),
                         child: Opacity(
                           opacity: _opacityAnimation.value,
                           child: Container(
-                            color: Colors.black.withOpacity(0.5),
+                            width: widget.drawerWidth,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  blurRadius: 10,
+                                  spreadRadius: 2,
+                                ),
+                              ],
+                            ),
+                            child: widget.sideBarBuilder(
+                              context,
+                              drawerOpened,
+                              toggleDrawer,
+                            ),
+                          ).cornerRadiusWithClipRRectOnly(
+                            topRight: theme.radius.toInt(),
+                            bottomRight: theme.radius.toInt(),
                           ),
                         ),
                       ),
-                    // Sliding sidebar
-                    Transform.translate(
-                      offset: Offset(_slideAnimation.value, 0),
-                      child: Opacity(
-                        opacity: _opacityAnimation.value,
-                        child: Container(
-                          width: widget.drawerWidth,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: widget.sideBarBuilder(
-                            context,
-                            drawerOpened,
-                            toggleDrawer,
-                          ),
-                        ).cornerRadiusWithClipRRectOnly(
-                          topRight: theme.radius.toInt(),
-                          bottomRight: theme.radius.toInt(),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-        ],
+                    ],
+                  );
+                },
+              ),
+          ],
+        ),
       ),
     );
   }

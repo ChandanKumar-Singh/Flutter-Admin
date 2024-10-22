@@ -1,10 +1,7 @@
-import 'package:admin/core/theme/index.dart';
-import 'package:admin/main.dart';
 import 'package:admin/shared/extensions/index.dart';
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:provider/provider.dart';
 import 'package:side_sheet/side_sheet.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 

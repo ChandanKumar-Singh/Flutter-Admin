@@ -21,6 +21,7 @@ class _TotalUsersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (_, bound) {
       return MainCard(
+        elevation: 0,
         padding: bound.maxWidth * 0.01,
         child: Column(
           children: [
