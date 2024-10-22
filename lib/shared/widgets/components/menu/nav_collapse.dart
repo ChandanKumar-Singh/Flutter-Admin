@@ -116,9 +116,7 @@ class _NavCollapseState extends State<NavCollapse> with WidgetsBindingObserver {
                           isExpanded
                               ? Icons.arrow_drop_up
                               : Icons.arrow_drop_down,
-                          color: hovering
-                              ? theme.colorScheme.secondary
-                              : null,
+                          color: hovering ? theme.colorScheme.secondary : null,
                         ),
                       ],
                     ),

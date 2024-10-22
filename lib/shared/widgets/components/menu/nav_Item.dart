@@ -59,18 +59,16 @@ class _NavItemState extends State<NavItem> {
                       SizedBox(
                         width: widget.intendation,
                         height: widget.intendation,
-                        child: FittedBox(
-                          fit: BoxFit.contain,
-                          child: getLeading()
-                        ),
+                        child:
+                            FittedBox(fit: BoxFit.contain, child: getLeading()),
                       ),
                       SizedBox(width: widget.intendation * 2 / 3),
                       Expanded(
                         child: Text(
                           widget.title,
                           style: theme.textTheme.bodyLarge?.copyWith(
-                            color: hovering
-                                ? theme.colorScheme.secondary:null,
+                            color:
+                                hovering ? theme.colorScheme.secondary : null,
                             //     : theme.colorScheme.onSurface,
                             fontWeight:
                                 hovering ? FontWeight.w500 : FontWeight.normal,
@@ -96,11 +94,11 @@ class _NavItemState extends State<NavItem> {
   }
 
   Widget? getLeading() {
-    if(widget.icon == null) return null;
+    if (widget.icon == null) return null;
     if (widget.icon is Icon) {
       return widget.icon!;
     }
-    if(widget.icon is IconData) {
+    if (widget.icon is IconData) {
       return Icon(widget.icon as IconData);
     }
     return const SizedBox.shrink();

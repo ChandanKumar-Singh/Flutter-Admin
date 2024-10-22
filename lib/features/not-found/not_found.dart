@@ -9,7 +9,8 @@ class NotFoundPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pageName != null ? '$pageName Not Found' : 'Page Not Found'),
+        title:
+            Text(pageName != null ? '$pageName Not Found' : 'Page Not Found'),
       ),
       body: Center(
         child: Column(

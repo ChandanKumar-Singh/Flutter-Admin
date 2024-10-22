@@ -28,8 +28,8 @@ class MyApp extends StatefulWidget {
 }
 
 final GoRouter _router = AppRouter.router;
-class _MyAppState extends State<MyApp> {
 
+class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
@@ -51,15 +51,13 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Web Admin',
         theme: AdminTheme.buildTheme(
-          customizasionExt: Provider.of<CustomizasionThemeExt>(context),
-          exenstions: [
-             WoltModalSheetThemeData(
-            modalBarrierColor: Color(0x52000000),
-            surfaceTintColor: Colors.transparent,
-            
-          ),
-          ]
-        ),
+            customizasionExt: Provider.of<CustomizasionThemeExt>(context),
+            exenstions: [
+              WoltModalSheetThemeData(
+                modalBarrierColor: Color(0x52000000),
+                surfaceTintColor: Colors.transparent,
+              ),
+            ]),
         routerDelegate: _router.routerDelegate,
         routeInformationParser: _router.routeInformationParser,
         routeInformationProvider: _router.routeInformationProvider,

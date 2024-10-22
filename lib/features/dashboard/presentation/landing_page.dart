@@ -27,7 +27,7 @@ class LandingPage extends StatelessWidget {
             GridView.extent(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              maxCrossAxisExtent: 500,
+              maxCrossAxisExtent: 450,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               childAspectRatio: 1.5,
@@ -40,18 +40,20 @@ class LandingPage extends StatelessWidget {
             10.height,
             LayoutBuilder(
               builder: (context, b) {
-                return GridView.extent(
+                return GridView.custom(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  maxCrossAxisExtent: 700,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: b.maxWidth > 500 ? 1.3 : 1,
-                  children: [
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 700,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: b.maxWidth > 500 ? 1.3 : 1,
+                  ),
+                  childrenDelegate: SliverChildListDelegate.fixed([
                     _RadarChartSample1(),
                     // _RadarChartSample1(),
                     _TotalUsersCard(),
-                  ],
+                  ]),
                 );
               },
             ),

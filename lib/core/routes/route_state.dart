@@ -6,7 +6,8 @@ class RouteState extends ChangeNotifier {
   String? _currentRoute;
   BuildContext? _currentContext;
   final List<String> _routeHistory = [];
-  final StreamController<String> _currentRouteController = StreamController<String>.broadcast();
+  final StreamController<String> _currentRouteController =
+      StreamController<String>.broadcast();
   Stream<String> get currentRouteStream => _currentRouteController.stream;
 
   String? get currentRoute => _currentRoute;

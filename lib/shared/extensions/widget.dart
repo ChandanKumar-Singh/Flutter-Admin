@@ -39,12 +39,13 @@ extension WidgetExt on Widget? {
         verticalOffset: verticalOffset,
         preferBelow: preferBelow,
         excludeFromSemantics: excludeFromSemantics,
-        decoration: decoration??  BoxDecoration(
-          color: Colors.grey[600],
-          borderRadius: BorderRadius.circular(8.0),
-          shape: BoxShape.rectangle,
-          border: Border.all(color: Colors.black54, width: 1.0),
-        ),
+        decoration: decoration ??
+            BoxDecoration(
+              color: Colors.grey[600],
+              borderRadius: BorderRadius.circular(8.0),
+              shape: BoxShape.rectangle,
+              border: Border.all(color: Colors.black54, width: 1.0),
+            ),
         textStyle: textStyle,
         textAlign: textAlign,
         waitDuration: waitDuration, // Adjusted for smarter timing
@@ -58,7 +59,7 @@ extension WidgetExt on Widget? {
   }
 
   Widget toolTip2(String message, {Key? key}) {
-    return ElTooltip( 
+    return ElTooltip(
       key: key,
       content: Text(message),
       child: _empty,

@@ -42,7 +42,7 @@ class MainCard extends StatelessWidget {
       clipBehavior: clipBehavior ?? Clip.antiAlias,
       semanticContainer: semanticContainer,
       child: Padding(
-        padding:  EdgeInsets.all(padding),
+        padding: EdgeInsets.all(padding),
         child: child,
       ),
     );

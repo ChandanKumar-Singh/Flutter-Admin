@@ -13,7 +13,6 @@ import 'sheet_page_with_non_scrolling_layout.dart';
 import 'sheet_page_with_text_field.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
-
 class RootSheetPage {
   RootSheetPage._();
 

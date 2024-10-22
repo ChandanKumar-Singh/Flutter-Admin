@@ -19,19 +19,25 @@ class _TotalUsersCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainCard(
-      child: Column(
-        children: [
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     const TitleText('Total Users'),
-          //     IconButton(
-          //         onPressed: () {}, icon: const Icon(Icons.more_vert_rounded)),
-          //   ],
-          // ),
-          LayoutBuilder(builder: (_, bound) {
-            return LineChart(
+    return LayoutBuilder(builder: (_, bound) {
+      return MainCard(
+        padding: bound.maxWidth * 0.01,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const TitleText(
+                  'Total Users (5667)',
+                  // style: context.textTheme.bodyMedium
+                  //     ?.copyWith(fontWeight: FontWeight.bold),
+                ).expand(),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.more_vert_rounded)),
+              ],
+            ),
+            LineChart(
               LineChartData(
                 lineTouchData: LineTouchData(
                   handleBuiltInTouches: true,
@@ -58,18 +64,10 @@ class _TotalUsersCard extends StatelessWidget {
                       sideTitles: SideTitles(showTitles: false)),
                   topTitles: AxisTitles(
                     sideTitles: const SideTitles(showTitles: false),
-                    axisNameSize: bound.maxHeight*0.3,
+                    axisNameSize: bound.maxHeight * 0.3,
                     axisNameWidget: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Total Users (5667)',
-                                style: context.textTheme.titleLarge)
-                            .expand(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.more_vert_rounded),
-                        ),
-                      ],
+                      children: [],
                     ).paddingOnly(bottom: 10),
                   ),
                   leftTitles: AxisTitles(
@@ -82,26 +80,29 @@ class _TotalUsersCard extends StatelessWidget {
                   ),
                 ),
                 borderData: FlBorderData(show: false, border: Border.all()),
-                lineBarsData: [chart1Data(context), chart2Data(context)],
+                lineBarsData: [
+                  chart1Data(context, bound),
+                  chart2Data(context, bound)
+                ],
                 maxX: months.length.toDouble() + 2,
-                maxY: 6,
+                maxY: 4,
                 minX: 0,
                 minY: 0,
               ),
               duration: const Duration(milliseconds: 300), // Optional
               curve: Curves.linear, // Optional
-            );
-          }).expand(),
-        ],
-      ),
-    );
+            ).expand(),
+          ],
+        ),
+      );
+    });
   }
 
-  LineChartBarData chart2Data(BuildContext context) {
+  LineChartBarData chart2Data(BuildContext context, BoxConstraints bound) {
     return LineChartBarData(
       isCurved: true,
       color: context.theme.colorScheme.primary,
-      barWidth: 7,
+      barWidth: bound.maxWidth * 0.012,
       isStrokeCapRound: true,
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(
@@ -115,11 +116,11 @@ class _TotalUsersCard extends StatelessWidget {
     );
   }
 
-  LineChartBarData chart1Data(BuildContext context) {
+  LineChartBarData chart1Data(BuildContext context, BoxConstraints bound) {
     return LineChartBarData(
       isCurved: true,
       color: context.theme.colorScheme.secondary,
-      barWidth: 7,
+      barWidth: bound.maxWidth * 0.012,
       isStrokeCapRound: true,
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(
@@ -144,7 +145,9 @@ class _TotalUsersCard extends StatelessWidget {
 
   Widget bottomTitleWidgets(
       double value, TitleMeta meta, BoxConstraints bound) {
-    TextStyle? style = AppRouter.context!.textTheme.bodySmall;
+    TextStyle? style = AppRouter.context!.textTheme.bodySmall?.copyWith(
+      fontSize: bound.maxWidth * 0.04,
+    );
     String _text = '';
     switch (value.toInt()) {
       case 1:
@@ -189,13 +192,13 @@ class _TotalUsersCard extends StatelessWidget {
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 10,
-      angle: -pi / 5,
+      space: 0,
+      angle: 0,
       fitInside: SideTitleFitInsideData(
         enabled: true,
         axisPosition: 0,
         parentAxisSize: bound.maxWidth,
-        distanceFromEdge: 10,
+        distanceFromEdge: 0,
       ),
       child: text,
     );

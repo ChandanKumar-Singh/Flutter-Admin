@@ -11,7 +11,8 @@ class AppRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     _updateRouteState(route);
-    String tag = "${isIos?'':'\u001b[32m'}[Pushed]${isIos?'':'\u001b[0m'}";
+    String tag =
+        "${isIos ? '' : '\u001b[32m'}[Pushed]${isIos ? '' : '\u001b[0m'}";
     print('$tag - ${route.settings.name} - ${route.settings.arguments}');
   }
 
@@ -19,7 +20,7 @@ class AppRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
     _updateRouteState(previousRoute);
-    print('\u001b[32m[Poped]\u001b[0m ${previousRoute?.settings.name}');  
+    print('\u001b[32m[Poped]\u001b[0m ${previousRoute?.settings.name}');
   }
 
   void _updateRouteState(Route<dynamic>? route) {

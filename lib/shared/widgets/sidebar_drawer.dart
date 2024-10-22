@@ -59,7 +59,7 @@ class _SidebarDrawerState extends State<SidebarDrawer>
 
     widget.onCreate?.call(_controller);
     afterBuildCreated(() {
-      /// TODO : Uncomment 
+      /// TODO : Uncomment
       // drawerOpened = context.isTablet() || context.isDesktop();
       if (drawerOpened) _controller.forward();
     });

@@ -32,50 +32,52 @@ class _ReginalProgressCardState extends State {
 
   @override
   Widget build(BuildContext context) {
-    return MainCard(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const TitleText('Total Users'),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.more_vert_rounded)),
-            ],
-          ),
-          LayoutBuilder(builder: (context, bound) {
-            return AspectRatio(
-              aspectRatio: 1.3,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: PieChart(
-                  PieChartData(
-                    pieTouchData: PieTouchData(
-                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                        setState(() {
-                          if (!event.isInterestedForInteractions ||
-                              pieTouchResponse == null ||
-                              pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                          touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
-                        });
-                      },
-                    ),
-                    borderData: FlBorderData(show: false),
-                    sectionsSpace: 1,
-                    centerSpaceRadius: 10,
-                    sections: showingSections(bound),
-                  ),
+    return LayoutBuilder(builder: (context, bound) {
+      return MainCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const TitleText(
+                  'Total Users',
+                  // style: context.textTheme.bodyMedium?.copyWith(
+                  //   fontWeight: FontWeight.bold,
+                  // ),
                 ),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.more_vert_rounded)),
+              ],
+            ),
+            // (bound.maxHeight * 0.2).toInt().height,
+            PieChart(
+              PieChartData(
+                pieTouchData: PieTouchData(
+                  touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                    setState(() {
+                      if (!event.isInterestedForInteractions ||
+                          pieTouchResponse == null ||
+                          pieTouchResponse.touchedSection == null) {
+                        touchedIndex = -1;
+                        return;
+                      }
+                      touchedIndex =
+                          pieTouchResponse.touchedSection!.touchedSectionIndex;
+                    });
+                  },
+                ),
+                borderData: FlBorderData(show: false),
+                sectionsSpace: 1,
+                centerSpaceRadius: 10,
+                sections: showingSections(bound),
               ),
-            );
-          }).expand(),
-        ],
-      ),
-    );
+            ).center().expand(),
+          ],
+        ),
+      );
+    });
   }
 
   List<PieChartSectionData> showingSections(BoxConstraints bound) {
@@ -83,8 +85,8 @@ class _ReginalProgressCardState extends State {
     double h = bound.maxHeight;
     return List.generate(4, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? h * 0.09 : h * 0.07;
-      final radius = isTouched ? w * 0.22 : w * 0.2;
+      final fontSize = isTouched ? h * 0.05 : h * 0.07;
+      final radius = isTouched ? w * 0.14 : w * 0.13;
       final widgetSize = isTouched ? h * 0.15 : h * 0.1;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 

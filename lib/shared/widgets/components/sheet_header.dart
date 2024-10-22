@@ -67,18 +67,18 @@ class _SheetHeaderWidgetState extends State<SheetHeaderWidget> {
                           ),
                         ).fitted(width: 30),
                         10.width,
-        
+
                         /// title
                         Text(widget.title, style: context.textTheme.titleMedium)
                             .expand(),
-        
+
                         /// actions
                         ...widget.action,
                       ],
                     ),
                   );
                 }),
-        
+
             /// body
             widget.child.expand(),
           ],
